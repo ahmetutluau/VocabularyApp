@@ -1,5 +1,5 @@
 //
-//  GenderView.swift
+//  VocabularyLevelView.swift
 //  VocabularyApp
 //
 //  Created by Ahmet Utlu on 8.05.2025.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct GenderView: View {
+struct VocabularyLevelView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @State private var isNavigating = false
-    let titles = ["Female", "Male", "Other", "Prefer not to say"]
+    let titles = ["Beginner", "Intermediate", "Advanced"]
     
     var body: some View {
         ZStack {
@@ -19,7 +19,7 @@ struct GenderView: View {
             //: BackgroundColor
             
             VStack(spacing: 50) {
-                Text("Which option represents you best?")
+                Text("What's your vocabulary level?")
                     .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
                     .multilineTextAlignment(.center)
@@ -36,7 +36,7 @@ struct GenderView: View {
                             
                             Task {
                                 try? await Task.sleep(nanoseconds: 500_000_000)
-                                coordinator.push(page: .name)
+//                                coordinator.push(page: .name)
                                 isNavigating = false
                             }
                         }//: row
@@ -54,14 +54,14 @@ struct GenderView: View {
 }
 
 #Preview {
-    GenderView()
+    VocabularyLevelView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    GenderView()
+    VocabularyLevelView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 

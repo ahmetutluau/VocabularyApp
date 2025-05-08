@@ -20,7 +20,7 @@ struct WordsView: View {
             
             VStack(spacing: 30) {
                 Button {
-                    coordinator.push(page: .gender)
+                    coordinator.push(page: .vocabularyLevel)
                 } label: {
                     Text("Skip")
                         .foregroundColor(.primary)
@@ -46,7 +46,7 @@ struct WordsView: View {
                                 
                                 Task {
                                     try? await Task.sleep(nanoseconds: 500_000_000)
-//                                    coordinator.push(page: .gender)
+                                    coordinator.push(page: .vocabularyLevel)
                                     isNavigating = false
                                 }
                             }//: row

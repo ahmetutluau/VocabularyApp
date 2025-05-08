@@ -71,6 +71,9 @@ class Coordinator: ObservableObject {
         case .words:
             WordsView()
                 .navigationBarBackButtonHidden()
+        case .vocabularyLevel:
+            VocabularyLevelView()
+                .navigationBarBackButtonHidden()
         }
     }
     
