@@ -20,14 +20,14 @@ struct OnboardingStartView: View {
                 
                 VStack(alignment: .center, spacing: 20) {
                     Text("Expand your Vocabulary in 1 minute a day")
-                        .foregroundStyle(.primary)
+                        .foregroundColor(.primary)
                         .font(.system(.title, design: .serif))
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
                     //: TitleText
 
                     Text("Learn 10,000+ new words with a new daily habit that takes just 1 minute")
-                        .foregroundStyle(.primary)
+                        .foregroundColor(.primary)
                         .font(.body)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -42,14 +42,14 @@ struct OnboardingStartView: View {
                     VStack {
                         Text("350 million")
                             .fontWeight(.semibold)
-                            .foregroundStyle(.primary)
+                            .foregroundColor(.primary)
                             .font(.body)
                             .frame(maxWidth: .infinity)
                         //: LeftNumberText
 
                         Text("words learned")
                             .font(.caption)
-                            .foregroundStyle(.primary)
+                            .foregroundColor(.primary)
                             .frame(maxWidth: .infinity)
                         //: LeftLabel
                     }
@@ -67,7 +67,7 @@ struct OnboardingStartView: View {
                             Text("4.8")
                                 .font(.title2)
                                 .fontWeight(.bold)
-                                .foregroundStyle(.primary)
+                                .foregroundColor(.primary)
                                 .frame(maxWidth: .infinity, alignment: .center)
                             //: RatingText
 
@@ -95,14 +95,14 @@ struct OnboardingStartView: View {
                     VStack {
                         Text("10 million")
                             .fontWeight(.semibold)
-                            .foregroundStyle(.primary)
+                            .foregroundColor(.primary)
                             .font(.title3)
                             .frame(maxWidth: .infinity)
                         //: RightNumberText
 
                         Text("downloads")
                             .font(.caption)
-                            .foregroundStyle(.primary)
+                            .foregroundColor(.primary)
                             .frame(maxWidth: .infinity)
                         //: RightLabel
                     }

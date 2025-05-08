@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SocialMediaView: View {
     @EnvironmentObject private var coordinator: Coordinator
+    @State private var isNavigating = false
     let titles = ["Web search", "Instagram", "TikTok", "Friend/family", "App Store", "Facebook", "Other"]
     
     var body: some View {
@@ -19,7 +20,7 @@ struct SocialMediaView: View {
             
             VStack(spacing: 50) {
                 Text("How did you hear about Vocabulary?")
-                    .foregroundStyle(.primary)
+                    .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -29,8 +30,17 @@ struct SocialMediaView: View {
                 VStack(spacing: 10) {
                     ForEach(titles, id: \.self) { title in
                         OnboardingOptionRow(title: title) {
-                            coordinator.push(page: .tailorWord)
+                            // Prevent multiple taps
+                            guard !isNavigating else { return }
+                            isNavigating = true
+                            
+                            Task {
+                                try? await Task.sleep(nanoseconds: 500_000_000)
+                                coordinator.push(page: .tailorWord1)
+                                isNavigating = false
+                            }
                         }//: row
+                        .disabled(isNavigating)
                     }//: Foreach
                 }//: Vstack
                 

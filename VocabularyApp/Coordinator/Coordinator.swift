@@ -49,15 +49,22 @@ class Coordinator: ObservableObject {
         case .socialMedia:
             SocialMediaView()
                 .navigationBarBackButtonHidden()
-        case .tailorWord:
-            TailorWordView()
-                .navigationBarBackButtonHidden()
+        case .tailorWord1:
+            TailorWordView {
+                self.push(page: .age)
+            }
+            .navigationBarBackButtonHidden()
         case .age:
             AgeView()
                 .navigationBarBackButtonHidden()
         case .gender:
             GenderView()
                 .navigationBarBackButtonHidden()
+        case .name:
+            NameView()
+                .navigationBarBackButtonHidden()
+        case .tailorWord2:
+            EmptyView()
         }
     }
     

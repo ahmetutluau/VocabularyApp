@@ -10,9 +10,11 @@ import Foundation
 enum AppPages: Hashable {
     case onboardingStart
     case socialMedia
-    case tailorWord
+    case tailorWord1
     case age
     case gender
+    case name
+    case tailorWord2
 }
 
 enum Sheet: String, Identifiable {

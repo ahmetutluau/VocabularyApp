@@ -1,5 +1,5 @@
 //
-//  TailorWordView.swift
+//  NameView.swift
 //  VocabularyApp
 //
 //  Created by Ahmet Utlu on 8.05.2025.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct TailorWordView: View {
+struct NameView: View {
     @EnvironmentObject private var coordinator: Coordinator
-    var continueButtonTapped: () -> Void
+    @State var nameTextInput: String = ""
     
     var body: some View {
         ZStack {
@@ -17,19 +17,39 @@ struct TailorWordView: View {
                 .ignoresSafeArea()
             //: BackgroundColor
             
-            VStack {
+            VStack(spacing: 30) {
+                Button {
+                    
+                } label: {
+                    Text("Skip")
+                        .foregroundColor(.primary)
+                        .font(.system(.callout))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.horizontal, 20)
+                }//: Skip button
+
                 
-                Text("Tailor your word recommendations")
-                    .foregroundColor(.primary)
-                    .font(.system(.title, design: .serif))
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                //: Title
+                VStack(spacing: 80) {
+                    Text("What do you want to be called?")
+                        .foregroundColor(.primary)
+                        .font(.system(.title, design: .serif))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.horizontal, 30)
+                    //: Title
+                    
+                    TextField("Your name", text: $nameTextInput)
+                        .frame(height: 50)
+                        .padding(.horizontal)
+                        .background(.textFieldBackground)
+                        .cornerRadius(10)
+                        .frame(maxWidth: .infinity)
+                }
                 
                 Spacer()
-
+                
                 Button(action: {
-                    continueButtonTapped()
+                    coordinator.push(page: .socialMedia)
                 }) {
                     Text("Continue")
                         .font(.title3)
@@ -47,26 +67,27 @@ struct TailorWordView: View {
                                 .stroke(Color.black, lineWidth: 1)
                         )
                     //: ButtonLabel
-                }//: StartButton
+                }
                 .padding(.bottom, 32)
+                //: StartButton
                 
             } //: MainVStack
             .padding(.horizontal, 24)
-            .padding(.top, ScreenSize.height / 2)
-            
+            .padding(.top, 30)
+
         } //: MainZStack
     }
 }
 
 #Preview {
-    TailorWordView(continueButtonTapped: {})
+    NameView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    TailorWordView(continueButtonTapped: {})
+    NameView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 

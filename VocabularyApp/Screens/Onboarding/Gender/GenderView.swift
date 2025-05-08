@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GenderView: View {
     @EnvironmentObject private var coordinator: Coordinator
+    @State private var isNavigating = false
     let titles = ["Female", "Male", "Other", "Prefer not to say"]
     
     var body: some View {
@@ -19,7 +20,7 @@ struct GenderView: View {
             
             VStack(spacing: 50) {
                 Text("Which option represents you best??")
-                    .foregroundStyle(.primary)
+                    .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
@@ -29,8 +30,17 @@ struct GenderView: View {
                 VStack(spacing: 10) {
                     ForEach(titles, id: \.self) { title in
                         OnboardingOptionRow(title: title) {
+                            // Prevent multiple taps
+                            guard !isNavigating else { return }
+                            isNavigating = true
                             
+                            Task {
+                                try? await Task.sleep(nanoseconds: 500_000_000)
+                                coordinator.push(page: .name)
+                                isNavigating = false
+                            }
                         }//: row
+                        .disabled(isNavigating)
                     }//: Foreach
                 }//: Vstack
                 

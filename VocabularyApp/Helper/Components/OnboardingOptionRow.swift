@@ -15,7 +15,7 @@ struct OnboardingOptionRow: View {
     var body: some View {
         HStack {
             Text(title)
-                .foregroundStyle(.primary)
+                .foregroundColor(.primary)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 50)
                 .font(.title3)
@@ -25,16 +25,16 @@ struct OnboardingOptionRow: View {
             if isPressed {
                 Circle()
                     .frame(width: 20, height: 20)
-                    .foregroundStyle(.secondary)
+                    .foregroundColor(.secondary)
                     .overlay {
                         Circle()
-                            .foregroundStyle(.black)
+                            .foregroundColor(.black)
                             .frame(width: 10, height: 10)
                     }
             } else {
                 Circle()
                     .frame(width: 20, height: 20)
-                    .foregroundStyle(.clear)
+                    .foregroundColor(.clear)
                     .overlay {
                         Circle()
                             .stroke(.tertiary, lineWidth: 1)
