@@ -24,14 +24,15 @@ struct SocialMediaView: View {
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.horizontal, 30)
+                //: Title
                                 
                 VStack(spacing: 10) {
                     ForEach(titles, id: \.self) { title in
                         OnboardingOptionRow(title: title) {
-                            print("")
-                        }
-                    }
-                }
+                            coordinator.push(page: .tailorWord)
+                        }//: row
+                    }//: Foreach
+                }//: Vstack
                 
                 Spacer()
 

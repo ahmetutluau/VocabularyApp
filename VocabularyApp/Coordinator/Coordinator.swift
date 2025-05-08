@@ -49,6 +49,9 @@ class Coordinator: ObservableObject {
         case .socialMedia:
             SocialMediaView()
                 .navigationBarBackButtonHidden()
+        case .tailorWord:
+            TailorWordView()
+                .navigationBarBackButtonHidden()
         }
     }
     
