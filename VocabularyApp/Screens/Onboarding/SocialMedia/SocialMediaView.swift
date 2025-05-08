@@ -8,11 +8,49 @@
 import SwiftUI
 
 struct SocialMediaView: View {
+    @EnvironmentObject private var coordinator: Coordinator
+
+    let titles = ["Web search", "Instagram", "TikTok", "Friend/family", "App Store", "Facebook", "Other"]
     var body: some View {
-        Text("Social media page")
+        ZStack {
+            Color.onboardingBackground
+                .ignoresSafeArea()
+            //: BackgroundColor
+            
+            VStack(spacing: 50) {
+                Text("How did you hear about Vocabulary?")
+                    .foregroundStyle(.primary)
+                    .font(.system(.title, design: .serif))
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.horizontal, 30)
+                                
+                VStack(spacing: 10) {
+                    ForEach(titles, id: \.self) { title in
+                        OnboardingOptionRow(title: title) {
+                            print("")
+                        }
+                    }
+                }
+                
+                Spacer()
+
+            } //: MainVStack
+            .padding(.horizontal, 24)
+            .padding(.top, 60)
+
+        } //: MainZStack
     }
 }
 
-#Preview {
+#Preview("Light Mode") {
     SocialMediaView()
+        .environmentObject(Coordinator())
+        .preferredColorScheme(.light)
+}
+
+#Preview("Dark Mode") {
+    SocialMediaView()
+        .environmentObject(Coordinator())
+        .preferredColorScheme(.dark)
 }
