@@ -19,7 +19,7 @@ struct AgeView: View {
             
             VStack(spacing: 30) {
                 Button {
-                    
+                    coordinator.push(page: .gender)
                 } label: {
                     Text("Skip")
                         .foregroundStyle(.primary)
@@ -41,7 +41,7 @@ struct AgeView: View {
                     VStack(spacing: 10) {
                         ForEach(titles, id: \.self) { title in
                             OnboardingOptionRow(title: title) {
-                                coordinator.push(page: .tailorWord)
+                                coordinator.push(page: .gender)
                             }//: row
                         }//: Foreach
                     }//: Vstack
@@ -51,7 +51,7 @@ struct AgeView: View {
 
             } //: MainVStack
             .padding(.horizontal, 24)
-            .padding(.top, 20)
+            .padding(.top, 30)
 
         } //: MainZStack
     }

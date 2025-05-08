@@ -52,6 +52,12 @@ class Coordinator: ObservableObject {
         case .tailorWord:
             TailorWordView()
                 .navigationBarBackButtonHidden()
+        case .age:
+            AgeView()
+                .navigationBarBackButtonHidden()
+        case .gender:
+            GenderView()
+                .navigationBarBackButtonHidden()
         }
     }
     

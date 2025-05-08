@@ -28,7 +28,7 @@ struct TailorWordView: View {
                 Spacer()
 
                 Button(action: {
-                    
+                    coordinator.push(page: .age)
                 }) {
                     Text("Continue")
                         .font(.title3)

@@ -11,6 +11,8 @@ enum AppPages: Hashable {
     case onboardingStart
     case socialMedia
     case tailorWord
+    case age
+    case gender
 }
 
 enum Sheet: String, Identifiable {
