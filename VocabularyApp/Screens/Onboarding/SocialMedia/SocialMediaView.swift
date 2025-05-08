@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SocialMediaView: View {
     @EnvironmentObject private var coordinator: Coordinator
-
     let titles = ["Web search", "Instagram", "TikTok", "Friend/family", "App Store", "Facebook", "Other"]
+    
     var body: some View {
         ZStack {
             Color.onboardingBackground
