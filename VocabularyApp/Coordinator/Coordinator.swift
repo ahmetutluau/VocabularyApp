@@ -64,7 +64,13 @@ class Coordinator: ObservableObject {
             NameView()
                 .navigationBarBackButtonHidden()
         case .tailorWord2:
-            EmptyView()
+            TailorWordView {
+                self.push(page: .words)
+            }
+            .navigationBarBackButtonHidden()
+        case .words:
+            WordsView()
+                .navigationBarBackButtonHidden()
         }
     }
     

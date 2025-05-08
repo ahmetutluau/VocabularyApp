@@ -19,7 +19,7 @@ struct NameView: View {
             
             VStack(spacing: 30) {
                 Button {
-                    
+                    coordinator.push(page: .socialMedia)
                 } label: {
                     Text("Skip")
                         .foregroundColor(.primary)

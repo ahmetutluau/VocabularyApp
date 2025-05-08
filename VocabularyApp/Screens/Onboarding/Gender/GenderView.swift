@@ -27,7 +27,7 @@ struct GenderView: View {
                     .padding(.horizontal, 30)
                 //: Title
                                 
-                VStack(spacing: 10) {
+                VStack(spacing: 15) {
                     ForEach(titles, id: \.self) { title in
                         OnboardingOptionRow(title: title) {
                             // Prevent multiple taps

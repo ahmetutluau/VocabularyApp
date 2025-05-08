@@ -1,5 +1,5 @@
 //
-//  AgeView.swift
+//  WordsView.swift
 //  VocabularyApp
 //
 //  Created by Ahmet Utlu on 8.05.2025.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct AgeView: View {
+struct WordsView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @State private var isNavigating = false
-    let titles = ["13 to 17", "18 to 24", "25 to 34", "35 to 44", "45 to 54", "55+"]
+    let titles = ["10 words a week", "30 words a week", "50 words a week"]
     
     var body: some View {
         ZStack {
@@ -28,15 +28,13 @@ struct AgeView: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.horizontal, 20)
                 }//: Skip button
-
                 
                 VStack(spacing: 50) {
-                    Text("How old are you?")
+                    Text("How many words do you want to learn per week?")
                         .foregroundColor(.primary)
                         .font(.system(.title, design: .serif))
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.horizontal, 30)
                     //: Title
                                     
                     VStack(spacing: 15) {
@@ -48,7 +46,7 @@ struct AgeView: View {
                                 
                                 Task {
                                     try? await Task.sleep(nanoseconds: 500_000_000)
-                                    coordinator.push(page: .gender)
+//                                    coordinator.push(page: .gender)
                                     isNavigating = false
                                 }
                             }//: row
@@ -68,14 +66,14 @@ struct AgeView: View {
 }
 
 #Preview {
-    AgeView()
+    WordsView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    AgeView()
+    WordsView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 

@@ -15,6 +15,7 @@ enum AppPages: Hashable {
     case gender
     case name
     case tailorWord2
+    case words
 }
 
 enum Sheet: String, Identifiable {
