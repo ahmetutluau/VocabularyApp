@@ -1,5 +1,5 @@
 //
-//  GoalView.swift
+//  TopicView.swift
 //  VocabularyApp
 //
 //  Created by Ahmet Utlu on 10.05.2025.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct GoalView: View {
+struct TopicView: View {
     @EnvironmentObject private var coordinator: Coordinator
-    let titles = ["Improve my job prospects", "Enjoy learning new words", "Get ready for a test", "Enhance my lexicon", "Other"]
+    let titles = ["Human body", "Society", "Emotions", "Words in foreign languages", "Business", "Other"]
     @State var isSelecteds: [Bool]
     
     init() {
@@ -22,26 +22,28 @@ struct GoalView: View {
                 .ignoresSafeArea()
             //: BackgroundColor
             
-            VStack(spacing: 50) {
-                Text("Do you have a specific goal in mind?")
-                    .foregroundColor(.primary)
-                    .font(.system(.title, design: .serif))
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.horizontal, 30)
-                //: Title
-                
-                VStack(spacing: 15) {
-                    ForEach(titles.indices, id: \.self) { index in
-                        OnboardingMultipleOptionRow(title: titles[index],
-                                                    isSelected: $isSelecteds[index])//: row
-                    }//: Foreach
-                }//: Vstack
+            VStack {
+                VStack(spacing: 50) {
+                    Text("Which topics are you interested in?")
+                        .foregroundColor(.primary)
+                        .font(.system(.title, design: .serif))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.horizontal, 30)
+                    //: Title
+                    
+                    VStack(spacing: 15) {
+                        ForEach(titles.indices, id: \.self) { index in
+                            OnboardingMultipleOptionRow(title: titles[index],
+                                                        isSelected: $isSelecteds[index])//: row
+                        }//: Foreach
+                    }//: Vstack
+                }
                 
                 Spacer()
                 
                 Button(action: {
-                    coordinator.push(page: .topic)
+                    
                 }) {
                     Text("Continue")
                         .font(.title3)
@@ -73,14 +75,14 @@ struct GoalView: View {
 }
 
 #Preview {
-    GoalView()
+    TopicView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    GoalView()
+    TopicView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 

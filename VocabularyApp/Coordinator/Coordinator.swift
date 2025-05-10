@@ -83,6 +83,9 @@ class Coordinator: ObservableObject {
         case .goal:
             GoalView()
                 .navigationBarBackButtonHidden()
+        case .topic:
+            TopicView()
+                .navigationBarBackButtonHidden()
         }
     }
     

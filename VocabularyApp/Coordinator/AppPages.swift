@@ -20,6 +20,7 @@ enum AppPages: Hashable {
     case voice
     case customize
     case goal
+    case topic
 }
 
 enum Sheet: String, Identifiable {
