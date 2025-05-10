@@ -1,15 +1,15 @@
 //
-//  TailorWordView.swift
+//  VoiceView.swift
 //  VocabularyApp
 //
-//  Created by Ahmet Utlu on 8.05.2025.
+//  Created by Ahmet Utlu on 9.05.2025.
 //
 
 import SwiftUI
 
-struct TailorWordView: View {
+struct VoiceView: View {
     @EnvironmentObject private var coordinator: Coordinator
-    var continueButtonTapped: () -> Void
+    @StateObject var viewModel = VoiceViewModel()
     
     var body: some View {
         ZStack {
@@ -18,19 +18,24 @@ struct TailorWordView: View {
             //: BackgroundColor
             
             VStack {
-                Text("Tailor your word recommendations")
+                Text("Choose a voice to pronounce words?")
                     .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
-                //: Title
+                
+                ForEach(Array(viewModel.soundOptions.enumerated()), id: \.offset) { index, option in
+                    VoiceRowView(soundOption: option, isSelected: index == viewModel.selecteRowIndex) {
+                        viewModel.selecteRowIndex = index
+                    }//: row
+                }//: foreach
                 
                 Spacer()
-
+                
                 Button(action: {
-                    continueButtonTapped()
+                    
                 }) {
-                    Text("Continue")
+                    Text("Save voice selection")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
@@ -49,23 +54,21 @@ struct TailorWordView: View {
                 }//: StartButton
                 .padding(.bottom, 32)
                 
-            } //: MainVStack
-            .padding(.horizontal, 24)
-            .padding(.top, ScreenSize.height / 2)
-            
-        } //: MainZStack
+            }//: MainVStack
+            .padding(.horizontal)
+        }
     }
 }
 
 #Preview {
-    TailorWordView(continueButtonTapped: {})
+    VoiceView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    TailorWordView(continueButtonTapped: {})
+    VoiceView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 

@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CoordinatorView: View {
     @StateObject private var coordinator = Coordinator()
+    let page: AppPages = .onboardingStart
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            coordinator.build(page: .onboardingStart)
+            coordinator.build(page: page)
                 .navigationDestination(for: AppPages.self) { page in
                     coordinator.build(page: page)
                 }
