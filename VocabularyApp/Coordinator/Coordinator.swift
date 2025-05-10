@@ -77,6 +77,9 @@ class Coordinator: ObservableObject {
         case .voice:
             VoiceView()
                 .navigationBarBackButtonHidden()
+        case .customize:
+            CustomizeView()
+                .navigationBarBackButtonHidden()
         }
     }
     

@@ -1,15 +1,14 @@
 //
-//  VoiceView.swift
+//  CustomizeView.swift
 //  VocabularyApp
 //
-//  Created by Ahmet Utlu on 9.05.2025.
+//  Created by Ahmet Utlu on 10.05.2025.
 //
 
 import SwiftUI
 
-struct VoiceView: View {
+struct CustomizeView: View {
     @EnvironmentObject private var coordinator: Coordinator
-    @StateObject var viewModel = VoiceViewModel()
     
     var body: some View {
         ZStack {
@@ -18,24 +17,19 @@ struct VoiceView: View {
             //: BackgroundColor
             
             VStack {
-                Text("Choose a voice to pronounce words?")
+                Text("Customize the app to improve your experience")
                     .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
-                
-                ForEach(Array(viewModel.soundOptions.enumerated()), id: \.offset) { index, option in
-                    VoiceRowView(soundOption: option, isSelected: index == viewModel.selecteRowIndex) {
-                        viewModel.selecteRowIndex = index
-                    }//: row
-                }//: foreach
+                //: Title
                 
                 Spacer()
-                
+
                 Button(action: {
-                    coordinator.push(page: .customize)
+                    
                 }) {
-                    Text("Save voice selection")
+                    Text("Continue")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
@@ -54,21 +48,23 @@ struct VoiceView: View {
                 }//: StartButton
                 .padding(.bottom, 32)
                 
-            }//: MainVStack
-            .padding(.horizontal)
-        }
+            } //: MainVStack
+            .padding(.horizontal, 24)
+            .padding(.top, ScreenSize.height / 2)
+            
+        } //: MainZStack
     }
 }
 
 #Preview {
-    VoiceView()
+    CustomizeView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    VoiceView()
+    CustomizeView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 
