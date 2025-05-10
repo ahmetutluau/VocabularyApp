@@ -29,7 +29,7 @@ struct GenderView: View {
                                 
                 VStack(spacing: 15) {
                     ForEach(titles, id: \.self) { title in
-                        OnboardingOptionRow(title: title) {
+                        OnboardingOnlyOptionRow(title: title) {
                             // Prevent multiple taps
                             guard !isNavigating else { return }
                             isNavigating = true

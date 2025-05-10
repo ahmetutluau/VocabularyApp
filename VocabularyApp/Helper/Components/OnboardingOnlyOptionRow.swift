@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OnboardingOptionRow: View {
+struct OnboardingOnlyOptionRow: View {
     var title: String
     var buttonTapped: () -> Void
     @State private var isPressed = false
@@ -42,11 +42,11 @@ struct OnboardingOptionRow: View {
             }
         }
         .padding(.horizontal, 20)
+        .padding(.vertical, 5)
         .overlay {
             Capsule()
                 .stroke(isPressed ? .primary : .secondary, lineWidth: 1)
         }
-        .padding(.horizontal, 24)
         .contentShape(Rectangle())
         .onTapGesture {
             buttonTapped()
@@ -62,7 +62,7 @@ struct OnboardingOptionRow: View {
         Color.onboardingBackground
             .ignoresSafeArea()
         
-        OnboardingOptionRow(title: "Instagram", buttonTapped: {})
+        OnboardingOnlyOptionRow(title: "Instagram", buttonTapped: {})
     }
     .environment(\.colorScheme, .light)
 }
@@ -72,7 +72,7 @@ struct OnboardingOptionRow: View {
         Color.onboardingBackground
             .ignoresSafeArea()
         
-        OnboardingOptionRow(title: "Instagram", buttonTapped: {})
+        OnboardingOnlyOptionRow(title: "Instagram", buttonTapped: {})
     }
     .environment(\.colorScheme, .dark)
 }

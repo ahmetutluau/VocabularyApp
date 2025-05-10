@@ -19,6 +19,7 @@ enum AppPages: Hashable {
     case vocabularyLevel
     case voice
     case customize
+    case goal
 }
 
 enum Sheet: String, Identifiable {

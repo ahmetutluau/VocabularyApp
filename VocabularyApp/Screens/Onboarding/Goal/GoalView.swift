@@ -1,5 +1,5 @@
 //
-//  CustomizeView.swift
+//  GoalView.swift
 //  VocabularyApp
 //
 //  Created by Ahmet Utlu on 10.05.2025.
@@ -7,8 +7,14 @@
 
 import SwiftUI
 
-struct CustomizeView: View {
+struct GoalView: View {
     @EnvironmentObject private var coordinator: Coordinator
+    let titles = ["Improve my job prospects", "Enjoy learning new words", "Get ready for a test", "Enhance my lexicon", "Other"]
+    @State var isSelecteds: [Bool]
+    
+    init() {
+        _isSelecteds = State(initialValue: Array(repeating: false, count: titles.count))
+    }
     
     var body: some View {
         ZStack {
@@ -16,18 +22,26 @@ struct CustomizeView: View {
                 .ignoresSafeArea()
             //: BackgroundColor
             
-            VStack {
-                Text("Customize the app to improve your experience")
+            VStack(spacing: 50) {
+                Text("Do you have a specific goal in mind?")
                     .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.horizontal, 30)
                 //: Title
                 
+                VStack(spacing: 15) {
+                    ForEach(titles.indices, id: \.self) { index in
+                        OnboardingMultipleOptionRow(title: titles[index],
+                                                    isSelected: $isSelecteds[index])//: row
+                    }//: Foreach
+                }//: Vstack
+                
                 Spacer()
-
+                
                 Button(action: {
-                    coordinator.push(page: .goal)
+                    
                 }) {
                     Text("Continue")
                         .font(.title3)
@@ -39,6 +53,7 @@ struct CustomizeView: View {
                             Capsule()
                                 .fill(Color(red: 169/255, green: 208/255, blue: 203/255))
                                 .shadow(color: .black, radius: 0, x: 0, y: 3)
+                                .opacity(!isSelecteds.contains(true) ? 0.6 : 1)
                         )
                         .overlay(
                             Capsule()
@@ -47,24 +62,25 @@ struct CustomizeView: View {
                     //: ButtonLabel
                 }//: StartButton
                 .padding(.bottom, 32)
-                
+                .disabled(!isSelecteds.contains(true))
+
             } //: MainVStack
             .padding(.horizontal, 24)
-            .padding(.top, ScreenSize.height / 2)
-            
+            .padding(.top, 60)
+
         } //: MainZStack
     }
 }
 
 #Preview {
-    CustomizeView()
+    GoalView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    CustomizeView()
+    GoalView()
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 

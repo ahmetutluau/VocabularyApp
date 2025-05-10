@@ -17,5 +17,5 @@ final class VoiceViewModel: ObservableObject {
             SoundOption(name: "Mathilda", nationality: "American", fileName: "Austrlian_Female")
         ]
     
-    @Published var selecteRowIndex: Int?
+    @Published var selecteRowIndex: Int = 0
 }
