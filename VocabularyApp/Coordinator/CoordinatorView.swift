@@ -9,7 +9,15 @@ import SwiftUI
 
 struct CoordinatorView: View {
     @StateObject private var coordinator = Coordinator()
-    let page: AppPages = .onboardingStart
+        
+    var page: AppPages {
+        guard let hasLaunchedBefore = UserDefaultManager.shared.hasLaunchedBefore else { return .onboardingStart}
+        if hasLaunchedBefore {
+            return .home
+        } else {
+            return .onboardingStart
+        }
+    }
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
@@ -27,3 +35,5 @@ struct CoordinatorView: View {
         .environmentObject(coordinator)
     }
 }
+
+

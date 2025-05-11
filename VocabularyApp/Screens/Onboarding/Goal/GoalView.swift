@@ -53,7 +53,7 @@ struct GoalView: View {
                             Capsule()
                                 .fill(Color(red: 169/255, green: 208/255, blue: 203/255))
                                 .shadow(color: .black, radius: 0, x: 0, y: 3)
-                                .opacity(!isSelecteds.contains(true) ? 0.6 : 1)
+                                .opacity(!isSelecteds.contains(true) ? 0.4 : 1)
                         )
                         .overlay(
                             Capsule()

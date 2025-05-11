@@ -17,23 +17,26 @@ struct VoiceView: View {
                 .ignoresSafeArea()
             //: BackgroundColor
             
-            VStack {
+            VStack(spacing: 50) {
                 Text("Choose a voice to pronounce words?")
                     .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
                 
-                ForEach(Array(viewModel.soundOptions.enumerated()), id: \.offset) { index, option in
-                    VoiceRowView(soundOption: option, isSelected: index == viewModel.selecteRowIndex) {
-                        viewModel.selecteRowIndex = index
-                    }//: row
-                }//: foreach
+                VStack(spacing: 15) {
+                    ForEach(Array(viewModel.soundOptions.enumerated()), id: \.offset) { index, option in
+                        VoiceRowView(soundOption: option, isSelected: index == viewModel.selecteRowIndex) {
+                            viewModel.selecteRowIndex = index
+                        }//: row
+                    }//: foreach
+                }
                 
                 Spacer()
                 
                 Button(action: {
                     coordinator.push(page: .customize)
+                    viewModel.saveSelectedPersonVoice()
                 }) {
                     Text("Save voice selection")
                         .font(.title3)
@@ -56,6 +59,8 @@ struct VoiceView: View {
                 
             }//: MainVStack
             .padding(.horizontal)
+            .padding(.top, 60)
+
         }
     }
 }

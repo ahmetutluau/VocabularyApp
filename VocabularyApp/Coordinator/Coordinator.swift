@@ -86,6 +86,9 @@ class Coordinator: ObservableObject {
         case .topic:
             TopicView()
                 .navigationBarBackButtonHidden()
+        case .home:
+            HomeView()
+                .navigationBarBackButtonHidden()
         }
     }
     

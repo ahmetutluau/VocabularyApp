@@ -21,6 +21,7 @@ enum AppPages: Hashable {
     case customize
     case goal
     case topic
+    case home
 }
 
 enum Sheet: String, Identifiable {

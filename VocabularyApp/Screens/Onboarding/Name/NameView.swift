@@ -76,6 +76,9 @@ struct NameView: View {
             .padding(.top, 30)
 
         } //: MainZStack
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
 }
 

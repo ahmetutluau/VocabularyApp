@@ -40,7 +40,7 @@ struct VoiceRowView: View {
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Text(soundOption.name)
+                    Text(soundOption.nationality)
                         .foregroundColor(.secondary)
                         .font(.subheadline)
                         .multilineTextAlignment(.center)

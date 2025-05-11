@@ -9,13 +9,16 @@ import Foundation
 
 final class VoiceViewModel: ObservableObject {
     let soundOptions = [
-            SoundOption(name: "Brian", nationality: "American", fileName: "American_Male"),
-            SoundOption(name: "Mia", nationality: "American", fileName: "American_Female"),
-            SoundOption(name: "George", nationality: "American", fileName: "British_Male"),
-            SoundOption(name: "Emma", nationality: "American", fileName: "British_Female"),
-            SoundOption(name: "Oliver", nationality: "American", fileName: "Australian_Male"),
-            SoundOption(name: "Mathilda", nationality: "American", fileName: "Austrlian_Female")
+            SoundOption(name: "Brian", nationality: "American", fileName: "American_male"),
+            SoundOption(name: "Mia", nationality: "American", fileName: "American_female"),
+            SoundOption(name: "George", nationality: "British", fileName: "British_male"),
+            SoundOption(name: "Emma", nationality: "British", fileName: "British_female")
         ]
     
     @Published var selecteRowIndex: Int = 0
+    
+    // MARK: - Functions
+    func saveSelectedPersonVoice() {
+        UserDefaultManager.shared.selectedPersonVoice = soundOptions[selecteRowIndex].fileName
+    }
 }
