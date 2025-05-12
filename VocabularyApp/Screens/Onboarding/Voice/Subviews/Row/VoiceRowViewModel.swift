@@ -6,66 +6,38 @@
 //
 
 import SwiftUI
-import AVFoundation
 
-class VoiceRowViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
+class VoiceRowViewModel: ObservableObject {
     @Published var isPlaying = false
     @Published var progress: CGFloat = 0.0
 
-    private var player: AVAudioPlayer?
     private var timer: Timer?
+    private var fileName: String = ""
 
     func togglePlayPause(fileName: String) {
         if isPlaying {
-            pause()
+            AudioManager.shared.stop()
+            stopTimer()
+            isPlaying = false
         } else {
-            guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else {
-                print("Audio file not found: \(fileName).mp3")
-                return
-            }
-            play(url: url)
-        }
-    }
-
-    private func play(url: URL) {
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            player?.delegate = self
-            player?.prepareToPlay()
-            player?.play()
+            self.fileName = fileName
             isPlaying = true
+            AudioManager.shared.playSound(fileName: fileName) { [weak self] in
+                self?.isPlaying = false
+                self?.progress = 0.0
+                self?.stopTimer()
+            }
             startTimer()
-        } catch {
-            print("Audio playback error: \(error)")
         }
-    }
-
-    private func pause() {
-        player?.pause()
-        isPlaying = false
-        stopTimer()
-    }
-
-    private func stop() {
-        player?.stop()
-        isPlaying = false
-        progress = 0.0
-        stopTimer()
-    }
-
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        isPlaying = false
-        progress = 1.0
-        stopTimer()
     }
 
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
-            guard let self = self, let player = self.player else { return }
-            self.progress = CGFloat(player.currentTime / player.duration)
+            guard let self = self else { return }
+            let current = AudioManager.shared.currentTime()
+            let duration = AudioManager.shared.duration()
+            self.progress = CGFloat(current / duration)
         }
-        guard let player = self.player else { return }
-        self.progress = CGFloat(player.currentTime / player.duration)
     }
 
     private func stopTimer() {

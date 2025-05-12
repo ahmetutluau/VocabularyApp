@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AVFoundation
 
 struct Word {
     let title: String
@@ -18,7 +17,6 @@ struct Word {
 
 struct HomeRowView: View {
     var word: Word
-    @State private var player: AVAudioPlayer?
     
     var body: some View {
         VStack(alignment: .center, spacing: 30) {
@@ -35,7 +33,7 @@ struct HomeRowView: View {
                         .font(.subheadline)
                     
                     Button {
-                        playSound()
+                        AudioManager.shared.playSound(fileName: word.soundFile, onFinish: {})
                     } label: {
                         Image(systemName: "speaker.wave.2")
                             .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
@@ -63,27 +61,12 @@ struct HomeRowView: View {
         .background(.clear)
         
     }
-    
-    // MARK: - Helper Functions
-    private func playSound() {
-        guard let url = Bundle.main.url(forResource: word.soundFile, withExtension: "mp3") else {
-            print("Sound file not found")
-            return
-        }
-        
-        do {
-            player = try AVAudioPlayer(contentsOf: url)
-            player?.play()
-        } catch {
-            print("Error playing sound: \(error.localizedDescription)")
-        }
-    }
 }
 
 #Preview {
     ZStack {
         Color.gray
         
-        HomeRowView(word: Word(title: "indelible", pronounce: "In'd&labal", soundFile: "American_Female", description: "(adj.) Impossible to erase or forget", example: "Her smile left an indelible mark on his heart."))
+        HomeRowView(word: Word(title: "indelible", pronounce: "In'd&labal", soundFile: "American_female", description: "(adj.) Impossible to erase or forget", example: "Her smile left an indelible mark on his heart."))
     }
 }
