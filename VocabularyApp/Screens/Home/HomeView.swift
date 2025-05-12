@@ -36,9 +36,7 @@ struct HomeView: View {
                                     }
                                 }
                                 .onAppear {
-                                    if index == 1 {
-                                        UserDefaultManager.shared.hasLaunchedBefore = true
-                                    }
+                                    UserDefaultManager.shared.hasLaunchedBefore = true
                                 }
                         }
                     }
