@@ -50,7 +50,7 @@ class Coordinator: ObservableObject {
             SocialMediaView()
                 .navigationBarBackButtonHidden()
         case .tailorWord1:
-            TailorWordView {
+            TailorWordView(imageName: "tailorWordImage1") {
                 self.push(page: .age)
             }
             .navigationBarBackButtonHidden()
@@ -64,7 +64,7 @@ class Coordinator: ObservableObject {
             NameView()
                 .navigationBarBackButtonHidden()
         case .tailorWord2:
-            TailorWordView {
+            TailorWordView(imageName: "tailorWordImage1") {
                 self.push(page: .words)
             }
             .navigationBarBackButtonHidden()
@@ -73,6 +73,9 @@ class Coordinator: ObservableObject {
                 .navigationBarBackButtonHidden()
         case .vocabularyLevel:
             VocabularyLevelView()
+                .navigationBarBackButtonHidden()
+        case .theme:
+            ThemeView()
                 .navigationBarBackButtonHidden()
         case .voice:
             VoiceView()

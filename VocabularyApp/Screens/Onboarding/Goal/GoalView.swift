@@ -22,21 +22,23 @@ struct GoalView: View {
                 .ignoresSafeArea()
             //: BackgroundColor
             
-            VStack(spacing: 50) {
-                Text("Do you have a specific goal in mind?")
-                    .foregroundColor(.primary)
-                    .font(.system(.title, design: .serif))
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.horizontal, 30)
-                //: Title
-                
-                VStack(spacing: 15) {
-                    ForEach(titles.indices, id: \.self) { index in
-                        OnboardingMultipleOptionRow(title: titles[index],
-                                                    isSelected: $isSelecteds[index])//: row
-                    }//: Foreach
-                }//: Vstack
+            VStack {
+                VStack(spacing: 50) {
+                    Text("Do you have a specific goal in mind?")
+                        .foregroundColor(.primary)
+                        .font(.system(.title, design: .serif))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.horizontal, 10)
+                    //: Title
+                    
+                    VStack(spacing: 15) {
+                        ForEach(titles.indices, id: \.self) { index in
+                            OnboardingMultipleOptionRow(title: titles[index],
+                                                        isSelected: $isSelecteds[index])//: row
+                        }//: Foreach
+                    }//: Vstack
+                }
                 
                 Spacer()
                 

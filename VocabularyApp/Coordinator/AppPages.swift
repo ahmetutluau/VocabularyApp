@@ -17,6 +17,7 @@ enum AppPages: Hashable {
     case tailorWord2
     case words
     case vocabularyLevel
+    case theme
     case voice
     case customize
     case goal

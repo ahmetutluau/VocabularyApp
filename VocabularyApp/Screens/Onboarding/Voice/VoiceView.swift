@@ -17,19 +17,21 @@ struct VoiceView: View {
                 .ignoresSafeArea()
             //: BackgroundColor
             
-            VStack(spacing: 50) {
-                Text("Choose a voice to pronounce words?")
-                    .foregroundColor(.primary)
-                    .font(.system(.title, design: .serif))
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                
-                VStack(spacing: 15) {
-                    ForEach(Array(viewModel.soundOptions.enumerated()), id: \.offset) { index, option in
-                        VoiceRowView(soundOption: option, isSelected: index == viewModel.selecteRowIndex) {
-                            viewModel.selecteRowIndex = index
-                        }//: row
-                    }//: foreach
+            VStack {
+                VStack(spacing: 50) {
+                    Text("Choose a voice to pronounce words?")
+                        .foregroundColor(.primary)
+                        .font(.system(.title, design: .serif))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    
+                    VStack(spacing: 15) {
+                        ForEach(Array(viewModel.soundOptions.enumerated()), id: \.offset) { index, option in
+                            VoiceRowView(soundOption: option, isSelected: index == viewModel.selecteRowIndex) {
+                                viewModel.selecteRowIndex = index
+                            }//: row
+                        }//: foreach
+                    }
                 }
                 
                 Spacer()

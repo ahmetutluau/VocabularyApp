@@ -17,6 +17,16 @@ struct OnboardingStartView: View {
             //: BackgroundColor
             
             VStack {
+                Image("onboardingImage")
+                    .resizable()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: ScreenSize.height / 2)
+                
+                Spacer()
+            }
+            
+            VStack {
+                
                 
                 VStack(alignment: .center, spacing: 20) {
                     Text("Expand your Vocabulary in 1 minute a day")
@@ -137,9 +147,10 @@ struct OnboardingStartView: View {
                 
             } //: MainVStack
             .padding(.horizontal, 24)
-            .padding(.top, ScreenSize.height / 2.5)
+            .padding(.top, ScreenSize.height / 2)
             
         } //: MainZStack
+        .ignoresSafeArea()
     }
 }
 

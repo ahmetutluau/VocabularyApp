@@ -12,12 +12,8 @@ struct HomeScrollEntrenceView: View {
     
     var body: some View {
         ZStack {
-            Color.onboardingBackground
-                .ignoresSafeArea()
-            //: BackgroundColor
-            
             Text("Welcome to Vocabulary")
-                .foregroundColor(.primary)
+                .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                 .font(.system(.title, design: .serif))
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -32,6 +28,7 @@ struct HomeScrollEntrenceView: View {
                     Image(systemName: "chevron.up")
                         .resizable()
                         .frame(width: 40, height: 20)
+                        .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                         .fontWeight(.thin)
                         .offset(y: isAnimating ? -2 : 2)
                         .animation(
@@ -43,7 +40,7 @@ struct HomeScrollEntrenceView: View {
                         }
                     
                     Text("Swipe up")
-                        .foregroundColor(.primary)
+                        .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                         .font(.body)
                         .multilineTextAlignment(.center)
                 }
@@ -52,9 +49,16 @@ struct HomeScrollEntrenceView: View {
 
         } //: MainZStack
         .ignoresSafeArea()
+        .background(.clear)
     }
 }
 
 #Preview {
     HomeScrollEntrenceView()
+        .environment(\.colorScheme, .dark)
+}
+
+#Preview {
+    HomeScrollEntrenceView()
+        .environment(\.colorScheme, .light)
 }

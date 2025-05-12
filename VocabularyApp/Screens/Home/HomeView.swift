@@ -13,7 +13,8 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            Color.onboardingBackground
+            Image(UserDefaultManager.shared.selectedTheme?.image ?? "theme1")
+                .resizable()
                 .ignoresSafeArea()
 
             GeometryReader { geometry in
@@ -23,6 +24,9 @@ struct HomeView: View {
                         if !(UserDefaultManager.shared.hasLaunchedBefore ?? false) {
                             HomeScrollEntrenceView()
                                 .frame(width: geometry.size.width, height: geometry.size.height)
+                                .onAppear {
+                                    UserDefaultManager.shared.hasLaunchedBefore = true
+                                }
                         }
 
                         ForEach(Array(viewModel.words.enumerated()), id: \.offset) { index, word in
@@ -31,9 +35,6 @@ struct HomeView: View {
                                 .onAppear {
                                     if index == (viewModel.words.count - 1) {
                                         viewModel.currentPage += 1
-                                    }
-                                    if index == 2 {
-                                        UserDefaultManager.shared.hasLaunchedBefore = true
                                     }
                                 }
                         }
@@ -57,35 +58,37 @@ struct HomeView: View {
                         HStack(alignment: .center, spacing: 8) {
                             Image(systemName: "bookmark")
                                 .resizable()
+                                .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                                 .frame(width: 13, height: 13)
 
                             Text("0/5")
                                 .font(.subheadline)
+                                .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
 
                             RoundedRectangle(cornerRadius: 5)
                                 .frame(width: 80, height: 8)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.gray)
                         }
                         .padding(10)
-                        .background(.voiceRowBackground)
+                        .background(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textBackground ?? "gray"))
                         .cornerRadius(20)
 
                         Spacer()
 
                         Circle()
-                            .foregroundStyle(.voiceRowBackground)
+                            .foregroundStyle(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textBackground ?? "gray"))
                             .frame(width: 60, height: 60)
                             .overlay {
                                 Image(systemName: "crown")
                                     .resizable()
                                     .frame(width: 30, height: 30)
-                                    .foregroundStyle(.primary)
+                                    .foregroundStyle(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                             }
-                    }
+                    }//: Hstack
                     .padding(.horizontal, 24)
 
                     Spacer()
-                }
+                }//: navbar
                 .padding(.top, 60)
             }
         }

@@ -88,6 +88,6 @@ struct VoiceRowView: View {
     ZStack {
         Color.red
         
-        VoiceRowView(soundOption: SoundOption(name: "Jack", nationality: "American", fileName: ""), isSelected: false, didSelectButtonClicked: {})
+        VoiceRowView(soundOption: SoundOption(name: "Jack", nationality: "American", fileName: ""), isSelected: true, didSelectButtonClicked: {})
     }
 }

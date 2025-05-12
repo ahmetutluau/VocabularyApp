@@ -17,6 +17,13 @@ struct CustomizeView: View {
             //: BackgroundColor
             
             VStack {
+                Image("customizeImage")
+                    .resizable()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: ScreenSize.height / 3)
+                
+                Spacer()
+                
                 Text("Customize the app to improve your experience")
                     .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
@@ -50,7 +57,7 @@ struct CustomizeView: View {
                 
             } //: MainVStack
             .padding(.horizontal, 24)
-            .padding(.top, ScreenSize.height / 2)
+            .padding(.top, 60)
             
         } //: MainZStack
     }

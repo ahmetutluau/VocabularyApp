@@ -10,7 +10,7 @@ import SwiftUI
 struct SocialMediaView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @State private var isNavigating = false
-    let titles = ["Web search", "Instagram", "TikTok", "Friend/family", "App Store", "Facebook", "Other"]
+    let titles = ["Web search", "Instagram", "Friend/family", "App Store", "Facebook", "Other"]
     
     var body: some View {
         ZStack {

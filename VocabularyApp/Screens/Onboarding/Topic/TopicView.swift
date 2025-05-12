@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopicView: View {
     @EnvironmentObject private var coordinator: Coordinator
-    let titles = ["Human body", "Society", "Emotions", "Words in foreign languages", "Business", "Other"]
+    let titles = ["Human body", "Society", "Emotions", "Words in foreign languages", "Other"]
     @State var isSelecteds: [Bool]
     
     init() {
@@ -29,7 +29,7 @@ struct TopicView: View {
                         .font(.system(.title, design: .serif))
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.horizontal, 30)
+                        .padding(.horizontal, 10)
                     //: Title
                     
                     VStack(spacing: 15) {

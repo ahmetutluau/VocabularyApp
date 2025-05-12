@@ -36,7 +36,7 @@ struct VocabularyLevelView: View {
                             
                             Task {
                                 try? await Task.sleep(nanoseconds: 500_000_000)
-                                coordinator.push(page: .voice)
+                                coordinator.push(page: .theme)
                                 isNavigating = false
                             }
                         }//: row

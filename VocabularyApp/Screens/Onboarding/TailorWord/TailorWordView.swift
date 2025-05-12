@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TailorWordView: View {
     @EnvironmentObject private var coordinator: Coordinator
+    var imageName: String
     var continueButtonTapped: () -> Void
     
     var body: some View {
@@ -18,6 +19,13 @@ struct TailorWordView: View {
             //: BackgroundColor
             
             VStack {
+                Image(imageName)
+                    .resizable()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: ScreenSize.height / 3)
+                
+                Spacer()
+                
                 Text("Tailor your word recommendations")
                     .foregroundColor(.primary)
                     .font(.system(.title, design: .serif))
@@ -51,21 +59,21 @@ struct TailorWordView: View {
                 
             } //: MainVStack
             .padding(.horizontal, 24)
-            .padding(.top, ScreenSize.height / 2)
+            .padding(.top, 60)
             
         } //: MainZStack
     }
 }
 
 #Preview {
-    TailorWordView(continueButtonTapped: {})
+    TailorWordView(imageName: "tailorWordImage1", continueButtonTapped: {})
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .dark)
 
 }
 
 #Preview {
-    TailorWordView(continueButtonTapped: {})
+    TailorWordView(imageName: "tailorWordImage2", continueButtonTapped: {})
         .environmentObject(Coordinator())
         .environment(\.colorScheme, .light)
 

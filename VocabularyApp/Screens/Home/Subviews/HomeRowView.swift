@@ -24,42 +24,43 @@ struct HomeRowView: View {
         VStack(alignment: .center, spacing: 30) {
             VStack(spacing: 10) {
                 Text(word.title)
-                    .foregroundColor(.primary)
-                    .font(.title)
+                    .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
+                    .font(Font.stringToFont(fontString: UserDefaultManager.shared.selectedTheme?.textFont ?? "title"))
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
                 
                 HStack(spacing: 5) {
                     Text(word.pronounce)
-                        .foregroundColor(.primary)
+                        .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                         .font(.subheadline)
                     
                     Button {
                         playSound()
                     } label: {
                         Image(systemName: "speaker.wave.2")
-                            .foregroundColor(.primary)
+                            .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                     }
                 }
                 .padding(10)
-                .background(.voiceRowBackground)
+                .background(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textBackground ?? "gray"))
                 .cornerRadius(20)
                 .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 2)
             }
 
             Text(word.description)
-                .foregroundColor(.primary)
+                .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, alignment: .center)
             
             Text(word.example)
-                .foregroundColor(.primary)
+                .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .padding(.horizontal, 24)
+        .background(.clear)
         
     }
     
