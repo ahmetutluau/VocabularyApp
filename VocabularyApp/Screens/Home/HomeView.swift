@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject private var coordinator: Coordinator
     @StateObject var viewModel = HomeViewModel()
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
@@ -24,9 +25,6 @@ struct HomeView: View {
                         if !(UserDefaultManager.shared.hasLaunchedBefore ?? false) {
                             HomeScrollEntrenceView()
                                 .frame(width: geometry.size.width, height: geometry.size.height)
-                                .onAppear {
-                                    UserDefaultManager.shared.hasLaunchedBefore = true
-                                }
                         }
 
                         ForEach(Array(viewModel.words.enumerated()), id: \.offset) { index, word in
@@ -35,6 +33,11 @@ struct HomeView: View {
                                 .onAppear {
                                     if index == (viewModel.words.count - 1) {
                                         viewModel.currentPage += 1
+                                    }
+                                }
+                                .onAppear {
+                                    if index == 1 {
+                                        UserDefaultManager.shared.hasLaunchedBefore = true
                                     }
                                 }
                         }
@@ -85,11 +88,35 @@ struct HomeView: View {
                                     .foregroundStyle(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
                             }
                     }//: Hstack
-                    .padding(.horizontal, 24)
 
                     Spacer()
+                    
+                    HStack {
+                        if (UserDefaultManager.shared.hasLaunchedBefore ?? false) {
+                            Button {
+                                coordinator.push(page: .flashcard)
+                            } label: {
+                                HStack(spacing: 5) {
+                                    Image(systemName: "graduationcap")
+                                        .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
+                                    
+                                    Text("Practice")
+                                        .foregroundColor(Color.stringToColor(colorString: UserDefaultManager.shared.selectedTheme?.textColor ?? "primary"))
+                                        .font(.subheadline)
+                                }
+                                .padding(10)
+                                .cornerRadius(20)
+                            }//: Practice Button
+                        }
+                        
+                        Spacer()
+                    }
+
+
                 }//: navbar
                 .padding(.top, 60)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 32)
             }
         }
         .ignoresSafeArea()

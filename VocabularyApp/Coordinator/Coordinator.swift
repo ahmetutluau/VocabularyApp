@@ -92,6 +92,9 @@ class Coordinator: ObservableObject {
         case .home:
             HomeView()
                 .navigationBarBackButtonHidden()
+        case .flashcard:
+            FlashcardView()
+                .navigationBarBackButtonHidden()
         }
     }
     

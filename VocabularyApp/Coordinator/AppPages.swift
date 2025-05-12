@@ -23,6 +23,7 @@ enum AppPages: Hashable {
     case goal
     case topic
     case home
+    case flashcard
 }
 
 enum Sheet: String, Identifiable {
