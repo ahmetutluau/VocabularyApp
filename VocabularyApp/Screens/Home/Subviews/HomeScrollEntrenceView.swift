@@ -36,7 +36,7 @@ struct HomeScrollEntrenceView: View {
                                 .repeatForever(autoreverses: true), value: isAnimating
                         )
                         .onAppear {
-                            isAnimating.toggle()
+                            isAnimating = true
                         }
                     
                     Text("Swipe up")

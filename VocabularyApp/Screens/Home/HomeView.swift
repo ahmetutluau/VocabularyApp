@@ -11,6 +11,7 @@ struct HomeView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @StateObject var viewModel = HomeViewModel()
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    @State var hasLaunchBefore: Bool = true
     
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct HomeView: View {
                 ScrollView(.vertical) {
                     LazyVStack(spacing: 0) {
                         
-                        if !(UserDefaultManager.shared.hasLaunchedBefore ?? false) {
+                        if !hasLaunchBefore {
                             HomeScrollEntrenceView()
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                         }
@@ -34,9 +35,11 @@ struct HomeView: View {
                                     if index == (viewModel.words.count - 1) {
                                         viewModel.currentPage += 1
                                     }
-                                }
-                                .onAppear {
-                                    UserDefaultManager.shared.hasLaunchedBefore = true
+                                    
+                                    if index == 1 {
+                                        hasLaunchBefore = true
+                                        UserDefaultManager.shared.hasLaunchedBefore = true
+                                    }
                                 }
                         }
                     }
@@ -118,6 +121,9 @@ struct HomeView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            hasLaunchBefore = UserDefaultManager.shared.hasLaunchedBefore ?? false
+        }
     }
     
 }
