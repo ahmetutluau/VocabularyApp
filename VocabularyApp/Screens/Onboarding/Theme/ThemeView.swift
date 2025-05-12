@@ -49,7 +49,7 @@ struct ThemeView: View {
                         LazyVGrid(columns: Array(repeating: .init(), count: 3), spacing: 20) {
                             ForEach(Array(themes.enumerated()), id: \.offset) { index, theme in
                                 ThemeRow(theme: theme, isSelected: selectedIndex == index)
-                                    .frame(width: (geometry.size.width - 68) / 3, height: 150)
+                                    .frame(height: 150)
                                     .onTapGesture {
                                         selectedIndex = index
                                     }
